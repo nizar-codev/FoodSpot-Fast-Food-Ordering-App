@@ -1,0 +1,1440 @@
+#:import dp kivy.metrics.dp
+#:import ButtonBehavior kivy.uix.behaviors.ButtonBehavior
+
+<FoodBox>:
+    img: ""
+    title: ""
+    price: ""
+
+
+    orientation: "vertical"
+    size_hint_y: None
+    height: dp(300)
+    padding: [dp(10), dp(10), dp(10), dp(10)]
+    spacing: dp(6)
+    
+    
+
+    canvas.before:
+        Color:
+            rgba: 0.92, 0.92, 0.92, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15]
+
+    Image:
+        source: root.img
+        size_hint_y:None
+        height: dp(220)
+        fit_mode: "contain"
+    
+    Label:
+        text: root.title
+        font_size: "14sp"
+        bold: True
+        color: 0,0,0,1
+        size_hint_y: None
+        height: dp(30)
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+
+    Label:
+        text: root.price
+        font_size: "18sp"
+        bold: True
+        color: 0,0.6,0,1
+        size_hint_y: None
+        height: dp(30)
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+
+
+
+<RoundedInput@FloatLayout>:
+    hint_text: ""
+    password: False
+    size_hint: 0.8, None
+    height:dp(50)
+
+    canvas.before:
+        Color:
+            rgba: 1,1,1,1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25]
+
+    TextInput:
+        id: field
+        hint_text: root.hint_text
+        password: root.password
+        multiline: False
+        size_hint_x: 0.94
+        size_hint_y: 1
+        pos_hint: {"center_x":0.5, "center_y":0.5}
+        font_size: "14sp"
+        pos_hint: {"center_x":0.5, "center_y":0.5}
+
+        background_normal: ""
+        background_active: ""
+        background_color: 0,0,0,0
+
+        foreground_color: 0,0,0,1
+        hint_text_color: 0.4,0.4,0.4,1
+        cursor_color: 0,0,0,1
+        cursor_width: dp(1.5)
+        padding: [dp(12), dp(10)]
+        
+<ProfileField@BoxLayout>:
+    title: ""
+    value: ""
+
+    orientation: "vertical"
+    size_hint_y: None
+    height: dp(90)
+    spacing: dp(5)
+
+    Label:
+        text: root.title
+        bold: True
+        font_size: "16sp"
+        color: 0,0,0,1
+        size_hint_y: None
+        height: dp(20)
+        text_size: self.width, None
+        halign: "left"
+
+    BoxLayout:
+        size_hint_y: None
+        height: dp(50)
+        padding: dp(15), 0
+
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15]
+
+        Label:
+            text: root.value
+            color: 0.35, 0.35, 0.35, 1
+            font_size: "16sp"
+            text_size: self.size
+            halign: "left"
+            valign: "middle"
+
+#:import StringProperty kivy.properties.StringProperty
+<OrderCard@ButtonBehavior+BoxLayout>:
+    invoice_path: ""
+    orientation: "vertical"
+    size_hint_y: None
+    height: dp(190)
+    padding: dp(15)
+    spacing: dp(6)
+    on_press:
+        app.show_order_detail(self)
+
+    canvas.before:
+        Color:
+            rgba: 1,1,1,1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [18]
+
+    Label:
+        id: customer_lbl
+        bold: True
+        font_size: "18sp"
+        color: 0.93,0.28,0.05,1
+        halign: "left"
+        text_size: self.size
+
+    Label:
+        id: phone_lbl
+        color: 0.2,0.2,0.2,1
+        halign: "left"
+        text_size: self.size
+
+    Label:
+        id: address_lbl
+        color: 0.2,0.2,0.2,1
+        halign: "left"
+        text_size: self.size
+
+    Label:
+        id: items_lbl
+        color: 0.2,0.2,0.2,1
+        halign: "left"
+        text_size: self.size
+
+    Label:
+        id: total_lbl
+        bold: True
+        color: 0.93,0.28,0.05,1
+        halign: "left"
+        text_size: self.size
+
+    Label:
+        id: date_lbl
+        color: 0.4,0.4,0.4,1
+        halign: "left"
+        text_size: self.size
+            
+<RoundedPopupButton@Button>:
+    background_normal: ""
+    background_down: ""
+    background_color: 0,0,0,0
+
+    bold: True
+    color: 1,1,1,1
+
+    canvas.before:
+        Color:
+            rgba: 0.93, 0.28, 0.05, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20]
+
+<StartScreen>:
+    FloatLayout:
+        Image:
+            source: "images/pic-2.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: None, None
+            size: root.width, root.height
+            pos: self.pos
+ 
+
+
+
+<LoginScreen>:
+    FloatLayout:
+
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "images/img_login.png"
+
+
+
+        RoundedInput:
+            id: name_in
+            hint_text: "Name"
+            pos_hint: {"center_x":0.5, "center_y":0.70}
+
+        RoundedInput:
+            id: phone_in
+            hint_text: "Phone"
+            pos_hint: {"center_x":0.5, "center_y":0.60}
+
+        RoundedInput:
+            id: email_in
+            hint_text: "Email"
+            pos_hint: {"center_x":0.5, "center_y":0.50}
+
+        RoundedInput:
+            id: pass_in
+            hint_text: "Password"
+            password: True
+            pos_hint: {"center_x":0.5, "center_y":0.40}
+           
+
+        # -------- LOGIN BUTTON --------
+        Button:
+            text: "Login"
+            bold: True
+            size_hint: 0.5, 0.08
+            pos_hint: {"center_x": 0.5, "center_y": 0.28}
+            background_color: 0,0,0,0
+            color: 1,1,1,1
+            on_press: root.save_data(name_in.ids.field.text, phone_in.ids.field.text, email_in.ids.field.text, pass_in.ids.field.text)
+            canvas.before:
+                # Soft Shadow
+                Color:
+                    rgba: 0,0,0,0.25
+                RoundedRectangle:
+                    pos: self.x, self.y - 5
+                    size: self.width, self.height
+                    radius: [22]
+
+                # Blue Button
+                Color:
+                    rgba:0.93, 0.28, 0.05, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [22]
+        
+
+        Button:
+            text: "Skip for now"
+            size_hint_y: None
+            height: dp(45)
+            background_color: 0,0,0,0
+            color: 0.2,0.6,1,1
+            bold: True
+            font_size: "15sp"
+
+            on_press: root.skip_login()
+    
+#:import dp kivy.metrics.dp
+
+# ---------- FOOD CARD ----------
+<FoodCard@ButtonBehavior+BoxLayout>:
+    img: ""
+    title: ""
+    price: ""
+
+    orientation: "vertical"
+    size_hint_y: None
+    height: dp(260)
+    padding: dp(10)
+    spacing: dp(6)
+
+    
+
+    canvas.before:
+        Color:
+            rgba: 0.92, 0.92, 0.92, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [18]
+
+    Image:
+        source: root.img
+        allow_stretch: True
+        keep_ratio: True
+        height: dp(130)
+
+    Label:
+        text: root.title
+        bold: True
+        color: 0, 0, 0, 1
+        font_size: "15sp"
+        size_hint_y: None
+        height: dp(24)
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+
+    Label:
+        text: root.price
+        color: 0,.6,0,1
+        font_size: "20sp"
+        size_hint_y: None
+        height: dp(25)
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+
+
+# ---------- HOT DEAL CARD ----------
+<HotDealCard@ButtonBehavior+BoxLayout>:
+    img: ""
+    size_hint_y: None
+    height: dp(150)
+
+    Image:
+        source: root.img
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 1,1
+        pos_hint: {"x":0, "y":0}
+    
+
+
+
+# ---------- HOME SCREEN ----------
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+
+        # ===== TOP BAR =====
+        BoxLayout:
+            size_hint_y: None
+            height: dp(56)
+            padding: dp(12)
+
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "[color=#000000]FOOD[/color][color=#ed470d]SPOT[/color]"
+                markup: True
+                bold: True
+                font_size: "24sp"
+            
+
+            Button:
+                id: cart_label
+                text: "Cart: 0"
+                size_hint: None,None
+                size: dp(110), dp(40)
+            
+                bold: True
+                color: 1,1,1,1
+                background_color: 0,0,0,0
+                on_press: app.open_checkout_from_cart()
+
+                canvas.before:
+                    Color:
+                        rgba: 0.93, 0.28, 0.05, 1  
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+
+
+        # ===== CONTENT =====
+        ScrollView:
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(12)
+                spacing: dp(10)
+
+                # ---------- Popular Items Header ----------
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(50)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [18]
+
+                    Label:
+                        text: "POPULAR ITEMS"
+                        bold: True
+                        font_size: "22sp"
+                        color: 1, 1, 1, 1
+
+                # ----- 4 SMALL BOXES -----
+                GridLayout:
+                    cols: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(12)
+
+                    FoodCard:
+                        img: "images/zing.png"
+                        title: "Zinger Burger"
+                        color:0, 0, 0, 1
+                        price: "Rs 450"
+                        bold: True
+                        on_press: 
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+                            
+
+                    FoodCard:
+                        img: "images/pizza.png"
+                        title: "Pizza"
+                        price: "Rs 950"
+                        on_press:  
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+                              
+
+                    FoodCard:
+                        img: "images/fries.png"
+                        title: "Fries"
+                        price: "Rs 150"
+                        on_press: 
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+                            
+
+                    FoodCard:
+                        img: "images/frid-chick.png"
+                        title: "Fried Chicken"
+                        price: "Rs 350"
+                        on_press:  
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+                             
+                    
+                HotDealCard:
+                    img: "images/deal.png"
+
+                Button:
+                    text: "VIEW FULL MENU"
+                    size_hint_y: None
+                    height: dp(50)
+
+                    bold: True
+                    font_size: "18sp"
+                    color: 1, 1, 1, 1
+
+                    background_normal: ""
+                    background_down: ""
+                    background_color: 0, 0, 0, 0
+
+                    on_press:
+                        app.root.current = "more"
+
+                    canvas.before:
+                        Color:
+                            rgba: 0.93, 0.28, 0.05, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [18]
+                    
+
+                # ----- 2 LAST BOXES -----
+                GridLayout:
+                    cols: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(12)
+                    padding: 0, dp(10)
+
+                    FoodCard:
+                        img: "images/shwarma.png"
+                        title: "Shawarma"
+                        price: "Rs 250"
+                        on_press:
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+                            
+
+                    FoodCard:
+                        img: "images/wings.png"
+                        title: "Crispy Leg Piece"
+                        price: "Rs 500"
+                        on_press:
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+
+                    FoodCard:
+                        img: "images/mint.png"
+                        title: "Mint Margarita"
+                        price: "Rs 350"
+                        on_press:
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+
+                    FoodCard:
+                        img: "images/kabab.png"
+                        title: "Seekh Kabab"
+                        price: "Rs 650"
+                        on_press:
+                            detail = app.root.get_screen("detail")
+                            app.root.current = "detail"
+                            detail.open(self.img, self.title, self.price, "home")
+                            
+                 
+
+
+<MoreScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 0, dp(15), 0, 0
+
+        # Top Bar
+        
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            padding: dp(10), 0
+
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,1
+                RoundedRectangle:
+                    pos: self.x + dp(10), self.y
+                    size: self.width - dp(20), self.height
+                    radius: [18]
+
+            Label:
+                text: "OUR MENU"
+                bold: True
+                font_size: "22sp"
+                color: 1,1,1,1
+
+        # Account Section
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(8)
+            padding: dp(10), dp(5)
+
+            Button:
+                text: "Profile"
+                on_press: app.root.current = "profile"
+                bold: True
+                color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                background_color: 0,0,0,0
+
+                canvas.before:
+                    Color:
+                        rgba: 0.93, 0.28, 0.05, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15]
+
+            Button:
+                text: "Order History"
+                on_press: app.root.current = "order_history"
+                bold: True
+                color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                background_color: 0,0,0,0
+
+                canvas.before:
+                    Color:
+                        rgba: 0.93, 0.28, 0.05, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15]
+            
+        # Scrollable Grid
+        ScrollView:
+
+            GridLayout:
+                cols: 2
+                spacing: dp(12)
+                padding: dp(12)
+                size_hint_y: None
+                height: self.minimum_height
+
+                # ----- ROWS (2 per row automatically) -----
+
+                FoodBox:
+                    img: "images/more-1.png"
+                    title: "2 Pieces Crispy Chicken Meal"
+                    price: "Rs 650"
+
+                FoodBox:
+                    img: "images/more-2.png"
+                    title:"Chicken Mac Meal"
+                    price: "Rs 850"
+
+                FoodBox:
+                    img: "images/more-3.png"
+                    title:"White Chicken Karahi"
+                    price: "Rs 1200"
+
+                FoodBox:
+                    img: "images/more-4.png"
+                    title:"Strawberry Mac Fizz"
+                    price: "Rs 450"
+
+                FoodBox:
+                    img: "images/more-5.png"
+                    title:"Apple Juice"
+                    price: "Rs 300"
+
+                FoodBox:
+                    img: "images/more-6.png"
+                    title:"McFlurry Oreo Fudge"
+                    price: "Rs 450"
+
+                FoodBox:
+                    img: "images/more-7.png"
+                    title:"Mac Float"
+                    price: "Rs 600"
+
+                FoodBox:
+                    img: "images/more-8.png"
+                    title:"Cup Cake"
+                    price: "Rs 120"
+
+                FoodBox:
+                    img: "images/more-9.png"
+                    title:"Special Biryani"
+                    price: "Rs 450"
+
+                FoodBox:
+                    img: "images/more-10.png"
+                    title:"Special Nihari"
+                    price: "Rs 350"
+
+                FoodBox:
+                    img: "images/more-11.png"
+                    title:"Chicken Mandi"
+                    price: "Rs 700"
+
+                FoodBox:
+                    img: "images/more-12.png"
+                    title:"Grilled Chicken"
+                    price: "500"
+
+                FoodBox:
+                    img: "images/more-13.png"
+                    title:"Special Haleem"
+                    price: "Rs 300"
+
+                FoodBox:
+                    img: "images/more-14.png"
+                    title:"Dream Cake"
+                    price: "Rs 700"
+
+                FoodBox:
+                    img: "images/more-15.png"
+                    title:"Peshawari Polaw"
+                    price: "Rs 450"
+
+                FoodBox:
+                    img: "images/more-16.png"
+                    title:"Hot Chicken Soup"
+                    price: "Rs 120"    
+
+
+
+<ProductDetailScreen>:
+    BoxLayout:
+        orientation: "vertical"
+
+        # Top Bar
+        BoxLayout:
+            size_hint_y: None
+            height: dp(80)
+            padding: dp(12)
+            spacing: dp(8)
+
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            
+            BoxLayout:
+                size_hint_y: None
+                height: dp(55)
+
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    RoundedRectangle:
+                        pos: self.x + dp(10), self.y
+                        size: self.width - dp(20), self.height
+                        radius: [18]
+
+                Label:
+                    text: "ITEM DETAILS"
+                    bold: True
+                    font_size: "24sp"
+                    color: 1, 1, 1, 1
+            
+
+        # Detail Card
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: 0, dp(15), 0, dp(10)
+                spacing: dp(15)
+
+                # Product Image
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(220)
+                    canvas.before:
+                        Color:
+                            rgba: 0.97,0.97,0.97,1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [18]
+
+                    Image:
+                        id: detail_image
+                        source: ""
+                        fit_mode: "contain"
+
+                # Info Card
+                BoxLayout:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    spacing: dp(10)
+
+                    canvas.before:
+                        Color:
+                            rgba: 1,1,1,1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [16]
+                        Color:
+                            rgba: 0.87,0.87,0.87,1
+                        Line:
+                            rounded_rectangle: (*self.pos, *self.size, 16)
+                            width: 0.8
+
+                    Label:
+                        id: detail_name
+                        text: ""
+                        bold: True
+                        font_size: "22sp"
+                        color: 0,0,0,1
+                        size_hint_y: None
+                        height: dp(36)
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+
+                    Label:
+                        id: detail_price
+                        text: ""
+                        font_size: "28sp"
+                        bold: True
+                        color: 0,0.6,0,1
+                        size_hint_y: None
+                        height: dp(40)
+                        halign: "left"
+                        valign: "middle"
+                        text_size: self.size
+
+                    # Divider
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(1)
+                        canvas.before:
+                            Color:
+                                rgba: 0.88,0.88,0.88,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    # Quantity Row
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(50)
+                        spacing: dp(12)
+
+                        Label:
+                            text: "Quantity"
+                            font_size: "15sp"
+                            color: 0.4,0.4,0.4,1
+                            size_hint_x: None
+                            width: dp(80)
+                            halign: "left"
+                            text_size: self.size
+                            valign: "middle"
+
+                        Button:
+                            text: "-"
+                            font_size: "20sp"
+                            size_hint_x: None
+                            width: dp(40)
+                            background_color: 0,0,0,0
+                            color: 0,0,0,1
+                            on_press: app.root.get_screen("detail").change_qty(-1)
+                            canvas.before:
+                                Color:
+                                    rgba: 0.92,0.92,0.92,1
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [10]
+
+                        Label:
+                            id: qty_label
+                            text: "1"
+                            font_size: "18sp"
+                            bold: True
+                            color: 0,0,0,1
+                            size_hint_x: None
+                            width: dp(36)
+                            halign: "center"
+                            text_size: self.size
+                            valign: "middle"
+
+                        Button:
+                            text: "+"
+                            font_size: "20sp"
+                            size_hint_x: None
+                            width: dp(40)
+                            background_color: 0,0,0,0
+                            color: 1,1,1,1
+                            on_press: app.root.get_screen("detail").change_qty(1)
+                            canvas.before:
+                                Color:
+                                    rgba: 0.20, 0.55, 0.95, 1
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [10]
+
+
+                # Total Row
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(1)
+                        canvas.before:
+                            Color:
+                                rgba: 0.88,0.88,0.88,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(44)
+                        spacing: dp(12)
+
+                        Label:
+                            text: "Total"
+                            font_size: "15sp"
+                            color: 0.4,0.4,0.4,1
+                            size_hint_x: None
+                            width: dp(80)
+                            halign: "left"
+                            text_size: self.size
+                            valign: "middle"
+
+                        Label:
+                            id: total_label
+                            text: "Total: Rs 0"
+                            font_size: "22sp"
+                            bold: True
+                            color: 0.93, 0.28, 0.05, 1
+                            halign: "left"
+                            text_size: self.size
+                            valign: "middle"
+
+                # Add to Cart Button
+                Button:
+                    text: "ADD TO CART"
+                    size_hint: 0.9, None
+                    pos_hint: {"center_x": 0.5}
+                    height: dp(54)
+                    background_color: 0,0,0,0
+                    color: 1,1,1,1
+                    font_size: "17sp"
+                    bold: True
+                    on_press:
+                        app.root.get_screen("detail").add_to_cart()
+                        app.root.current = root.prev_screen
+                    canvas.before:
+                        Color:
+                            rgba: 0.93, 0.28, 0.05, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [27]
+
+
+<CheckoutScreen>:
+
+    canvas.before:
+        Color:
+            rgba:  0.96, 0.96, 0.96, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    ScrollView:
+
+        BoxLayout:
+            
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: dp(15)
+            padding: dp(15)
+
+            # -------- TITLE --------
+            BoxLayout:
+                size_hint_y: None
+                height: dp(55)
+
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    RoundedRectangle:
+                        pos: self.x + dp(10), self.y
+                        size: self.width - dp(20), self.height
+                        radius: [18]
+
+                Label:
+                    text: "CHECKOUT"
+                    bold: True
+                    font_size: "24sp"
+                    color: 1, 1, 1, 1
+
+            # -------- INPUTS --------
+            RoundedInput:
+                id: name_input
+                hint_text: "Full Name"
+                size_hint: 1, None
+                pos_hint: {"center_x": 0.5}
+
+            RoundedInput:
+                id: phone_input
+                hint_text: "Phone Number"
+                size_hint: 1, None
+                pos_hint: {"center_x": 0.5}
+
+            RoundedInput:
+                id: address_input
+                hint_text: "Address"
+                size_hint: 1, None
+                pos_hint: {"center_x": 0.5}
+
+            # -------- ORDER SUMMARY --------
+            Label:
+                text: "Order Summary"
+                color: 0.93, 0.28, 0.05, 1
+                bold: True
+                size_hint_y: None
+                height: dp(30)
+
+            ScrollView:
+                size_hint_y: None
+                height: dp(150)
+
+                GridLayout:
+                    id: order_list
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(8)
+                    
+
+            # -------- TOTAL --------
+            Label:
+                id: total_bill
+                text: "Total: Rs 0"
+                font_size: "20sp"
+                bold: True
+                color: 0.93, 0.28, 0.05, 1
+                size_hint_y: None
+                height: dp(40)
+
+            # -------- BUTTON --------
+            Button:
+                text: "Download Invoice"
+                size_hint_y: None
+                height: dp(55)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                bold: True
+
+                on_press:
+                    app.generate_invoice(name_input.ids.field.text, phone_input.ids.field.text, address_input.ids.field.text)
+
+                canvas.before:
+                    Color:
+                        rgba: 0.93, 0.28, 0.05, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [25]
+
+             # -------- WhatsApp --------
+            Button:
+                text: "Order on WhatsApp"
+                size_hint_y: None
+                height: dp(55)
+                background_normal: ""
+                background_down: ""
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                bold: True
+
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.7, 0.2, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [25]
+
+                on_press:
+                    app.send_whatsapp_order()
+
+
+
+           # -------- INVOICE CARD --------
+            BoxLayout:
+                id: invoice_card
+                orientation: "vertical"
+                size_hint_y: None
+                
+                height: self.minimum_height
+                minimum_height: self.minimum_height
+                padding: dp(18)
+                spacing: dp(4)
+
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+
+                canvas.after:
+                    Color:
+                        rgba: 0.85, 0.85, 0.85, 1
+                    Line:
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 20)
+                        width: 1.3
+
+                Label:
+                    text: "[b][color=#000000]FOOD[/color][color=#ed470d]SPOT[/color][/b]"
+                    markup: True
+                    font_size: "24sp"
+                    size_hint_y: None
+                    height: dp(32)
+
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+   
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+
+                    canvas:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+
+                        Line:
+                            points: self.x + dp(20), self.center_y, self.right - dp(20), self.center_y
+                            width: 1.2
+                
+
+                Label:
+                    text: "INVOICE"
+                    color: 0,0,0,1
+                    bold: True
+                    font_size: "18sp"
+                    size_hint_y: None
+                    height: dp(25)
+
+                Widget:
+                    size_hint_y: None
+                    height: dp(5)
+
+                Label:
+                    text: "Customer Information"
+                    color: 0.93,0.28,0.05,1
+                    bold: True
+                    font_size: "17sp"
+                    halign: "left"
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                Label:
+                    id: invoice_header
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "top"
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                Label:
+                    text: "Order Items"
+                    color: 0.93,0.28,0.05,1
+                    bold: True
+                    font_size: "17sp"
+                    halign: "left"
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                Label:
+                    id: invoice_items
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "top"
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                Label:
+                    id: invoice_total
+                    markup: True
+                    color: 0,0,0,1  
+                    bold: True
+                    font_size: "19sp"
+                    halign: "left"
+                    valign: "top"
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+
+<ProfileScreen>:
+    FloatLayout:
+
+        canvas.before:
+            Color:
+                rgba: 0.96,0.96,0.96,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Header
+        BoxLayout:
+            size_hint: 1, None
+            height: dp(60)
+            pos_hint: {"top": 1}
+
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "MY PROFILE"
+                bold: True
+                color: 1, 1, 1, 1
+                font_size: "24sp"
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: .9,None
+            height: dp(430)
+            pos_hint: {"center_x":.5,"top":0.80}
+            spacing: dp(16)
+
+            ProfileField:
+                id: name_field
+                title: "Name"
+
+            ProfileField:
+                id: phone_field
+                title: "Phone"
+
+            ProfileField:
+                id: email_field
+                title: "Email"
+
+            ProfileField:
+                id: password_field
+                title: "Password"
+
+            
+
+            Button:
+                text: "Logout"
+                size_hint: .5,None
+                height: dp(50)
+                pos_hint: {"center_x":.5}
+
+                bold: True
+                color: 1,1,1,1
+
+                background_normal: ""
+                background_down: ""
+                background_color: 0,0,0,0
+                on_press: root.logout()
+
+                canvas.before:
+                    Color:
+                        rgba: 0.93,0.28,0.05,1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15]
+
+
+<OrderHistoryScreen>:
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # Header
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "ORDER HISTORY"
+                bold: True
+                font_size: "24sp"
+                color: 1,1,1,1
+        FloatLayout:
+            ScrollView:
+                id: history_scroll
+                opacity: 1
+
+                BoxLayout:
+                    id: history_layout
+                    orientation: "vertical"
+                    spacing: dp(12)
+                    padding: dp(15)
+                    size_hint_y: None
+                    height: self.minimum_height
+
+            BoxLayout:
+                id: empty_state
+                orientation: "vertical"
+                Widget:
+
+                
+
+                Label:
+                    text: "No orders yet"
+                    font_size: "20sp"
+                    bold: True
+                    color: 0,0,0,1
+                    size_hint_y: None
+                    height: dp(30)
+
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+                    
+
+                Label:
+                    text: "Once you place an order, it will appear here."
+                    font_size: "15sp"
+                    color: .4,.4,.4,1
+                    size_hint_y: None
+                    height: dp(22)
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+                    
+
+                Widget:
+                    
+
+<OrderDetailScreen>:
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # ================= HEADER =================
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "ORDER DETAILS"
+                font_size: "24sp"
+                bold: True
+                color: 1,1,1,1
+         # ================= SUCCESS MESSAGE =================
+
+        Label:
+            id: status_label
+            text: ""
+            size_hint_y: None
+            height: dp(30)
+            font_size: "16sp"
+            bold: True
+            color: 0, 0.6, 0, 1
+            opacity: 0
+            halign: "center"
+            valign: "middle"
+            text_size: self.size
+
+        # ================= SCROLL =================
+
+        ScrollView:
+            do_scroll_x: False
+
+            AnchorLayout:
+                anchor_x: "center"
+                anchor_y: "top"
+                size_hint_y: None
+                height: invoice_image.height + dp(40)
+
+                Image:
+                    id: invoice_image
+                    source: root.invoice_path
+
+                    size_hint: None, None
+
+                    width: min(root.width * 0.85, dp(400))
+                    height: self.texture_size[1]
+
+                    allow_stretch: True
+                    keep_ratio: True
+        
+        BoxLayout:
+            size_hint_y: None
+            height: dp(160)
+            orientation: "vertical"
+            spacing: dp(10)
+            padding: dp(10)
+
+
+            Button:
+                text: "Delete Order"
+
+                size_hint: .9, None
+                height: dp(50)
+                pos_hint: {"center_x": .5}
+
+                bold: True
+                color: 1, 1, 1, 1
+
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0, 0, 0
+
+                on_press:
+                    app.delete_order(root.invoice_path)
+
+                canvas.before:
+                    Color:
+                        rgba: 0.85, 0.1, 0.1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15]

@@ -1,0 +1,12 @@
+.buildozer/
+bin/
+__pycache__/
+*.pyc
+invoice.txt
+user_data.txt
+# SQLite
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+FoodSpot_Invoice*.pdf
