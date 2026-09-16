@@ -1,14 +1,12 @@
 # 🍔 FoodSpot – Fast Food Ordering App
 
-**FoodSpot** is a fast-food ordering mobile application built with **Python and Kivy**. It provides a complete local ordering workflow, including food browsing, product selection, cart management, checkout, invoice generation, order history, and WhatsApp order sharing.
+**FoodSpot** is a fast-food ordering mobile application built with **Python and Kivy**. It delivers a complete local ordering workflow — from browsing food items and managing a cart to checkout, invoice generation, order history, and WhatsApp order sharing.
 
 ---
 
 ## 📱 About the Project
 
-FoodSpot was developed as a university software development project to demonstrate mobile application development using Python and the Kivy framework.
-
-The application allows users to browse food items, select quantities, add items to a cart, enter delivery information, generate invoices, save orders locally, view previous orders, and share order details through WhatsApp.
+FoodSpot is a mobile application designed to provide a smooth, modern food-ordering experience entirely on-device. Users can browse the menu, customize their order, check out, generate an invoice, and revisit past orders — all backed by a local database, with no internet dependency beyond optional WhatsApp sharing.
 
 ---
 
@@ -81,12 +79,10 @@ The checkout screen displays:
 
 ### 🚚 Delivery Charges
 
-FoodSpot currently uses the following delivery rules:
-
 | Order Subtotal   |   Delivery |
-| ---------------- | ---------: |
+| ----------------- | ---------: |
 | Rs 1000 or above |   **FREE** |
-| Below Rs 1000    | **Rs 100** |
+| Below Rs 1000     | **Rs 100** |
 
 ### 🧾 Invoice Generation
 
@@ -106,7 +102,7 @@ Invoices are saved locally as **PNG images** inside the application's `Invoices`
 
 ### 📚 Order History
 
-Orders are stored locally using SQLite and can be viewed later.
+Orders are stored locally using SQLite and can be viewed at any time.
 
 Each saved order contains:
 
@@ -128,11 +124,11 @@ Users can open a saved order to:
 * View order information
 * Delete the order
 
-When an order is deleted, the corresponding database record is removed and the saved invoice file is also deleted when available.
+When an order is deleted, the corresponding database record is removed and the saved invoice file is deleted as well, when available.
 
 ### 📱 WhatsApp Integration
 
-The application can prepare an order message for WhatsApp containing:
+The application prepares an order message for WhatsApp containing:
 
 * Customer name
 * Phone number
@@ -178,7 +174,7 @@ Stores:
 * Order date
 * Invoice path
 
-The database is automatically created when the application starts.
+The database is created automatically the first time the application runs.
 
 ---
 
@@ -216,7 +212,7 @@ FoodSpot/
     └── generated invoice images
 ```
 
-> `foodspot.db` is generated locally by the application and should not be committed to GitHub if it contains personal or customer data.
+> `foodspot.db` is generated locally by the application and should not be committed to version control if it contains personal or customer data.
 
 ---
 
@@ -248,45 +244,38 @@ View / Delete Order
 
 ---
 
-## 📊 Current Project Status
+## ✅ Key Capabilities
 
-🚧 **Under Development**
+FoodSpot provides a fully functional local food-ordering system, including:
 
-The current version provides a functional local food-ordering system with:
-
-* User/profile management
-* Food menu
+* User and profile management
+* Food menu browsing
 * Product details
 * Shopping cart
-* Checkout
-* Delivery charge calculation
-* SQLite database
+* Checkout with delivery charge calculation
+* SQLite-backed local database
 * Local order storage
-* Invoice generation
-* Invoice viewing
-* Order history
-* Order deletion
-* WhatsApp order integration
+* Invoice generation and viewing
+* Order history and deletion
+* WhatsApp order sharing
 * Android back-button navigation
 
 ---
 
-## 🔮 Future Improvements
+## 🔮 Roadmap
 
-Potential future improvements include:
+Planned enhancements include:
 
 * Secure password hashing
 * Improved authentication system
 * Multiple user accounts
 * Admin dashboard
-* Product management
-* Category management
+* Product and category management
 * Search and filtering
-* Cloud database
+* Cloud database integration
 * Firebase integration
 * Online payments
-* Order status tracking
-* Real-time order tracking
+* Real-time order status tracking
 * Push notifications
 * Backend/API integration
 
@@ -297,13 +286,13 @@ Potential future improvements include:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/FoodSpot.git
+git clone https://github.com/nizar-codev/FoodSpot-Fast-Food-Ordering-App.git
 ```
 
 ### 2. Open the Project
 
 ```bash
-cd FoodSpot
+cd FoodSpot-Fast-Food-Ordering-App
 ```
 
 ### 3. Install Dependencies
@@ -318,7 +307,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-The SQLite database will be created automatically when the application starts.
+The SQLite database is created automatically the first time the application runs.
 
 ---
 
